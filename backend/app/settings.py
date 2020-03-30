@@ -71,6 +71,15 @@ if DEBUG:
     CORS_ORIGIN_ALLOW_ALL = True
 
 
+# Other Celery settings
+CELERY_BEAT_SCHEDULE = {
+    "update-documents": {
+        "task": "solo_rog_api.tasks.r001_tasks.update_documents",
+        "schedule": crontab(hour=23, minute=59),
+    }
+}
+
+
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
